@@ -14,8 +14,9 @@ const words = [
 words.some(function(word) {
 	return word.length > 25;
 });
+
 words.some(function(word) {
-	return word.indexOf('thyroid') != -1;
+	return word.indexOf('thyroid') !== -1;
 });
 
 words.every(function(w) {
@@ -23,8 +24,8 @@ words.every(function(w) {
 });
 
 function allStrings(arr) {
-	arr.every(function(el) {
-		return typeof el === 'String';
+	return arr.every(function(el) {
+		return typeof el === 'string';
 	});
 }
 
@@ -34,36 +35,31 @@ btn.addEventListener('click', function(e) {
 	const allChecked = Array.from(checkboxes).every(function(checkbox) {
 		return checkbox.checked;
 	});
-	if (!allChecked) {
-		alert('Please select them all!');
-	}
-	// console.log(allChecked);
+	if (!allChecked) alert('PLEASE AGREE TO EVERYTHING!');
 });
-
-// this is writing the some and every function
 
 function mySome(arr, callback) {
 	for (let i = 0; i < arr.length; i++) {
-		if (callback(arr[i], i, arr)) {
-			return true;
-		}
+		if (callback(arr[i], i, arr)) return true;
 	}
 	return false;
 }
 
-// mySome([ 4, 5, 6 ], function(n) {
-// 	return n > 5;
-// });
+mySome([ 4, 5, 6, 7 ], function(n) {
+	return n > 5;
+});
 
 function myEvery(arr, callback) {
 	for (let i = 0; i < arr.length; i++) {
-		if (!callback(arr[i], i, arr)) {
-			return false;
-		}
+		if (!callback(arr[i], i, arr)) return false;
 	}
 	return true;
 }
 
-myEvery([ 4, 5, 6 ], function(n) {
+myEvery([ 4, 5, 6, 7 ], function(n) {
 	return n > 5;
+});
+
+myEvery([ 4, 5, 6, 7 ], function(n) {
+	return Number.isInteger(n);
 });
